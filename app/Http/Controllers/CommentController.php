@@ -21,7 +21,6 @@ class CommentController extends Controller
         );
 
         try {
-            //return response()->json($request);
             $client = new Client();
 
             $apiUrl = env('API_URL');
@@ -52,14 +51,12 @@ class CommentController extends Controller
 
             return redirect("/posts/$post_id")->with('success', 'Comentário criado com sucesso!');
         } catch( Throwable $e) {
-            //return response()->json($e->getMessage());
             return redirect("/posts/$post_id")->with('error', 'Falha ao criar comentário, tente novamente');
         }
     }
 
     public function destroy(Request $request, $id) {
         try {
-            //return response()->json($request);
             $client = new Client();
 
             $apiUrl = env('API_URL');
@@ -82,7 +79,6 @@ class CommentController extends Controller
 
             return redirect("/posts/$post_id")->with('success', 'Comentário deletado com sucesso!');
         } catch( Throwable $e) {
-            //return response()->json($e->getMessage());
             return redirect("/posts/$post_id")->with('error', 'Falha ao deletar comentário, tente novamente');
         }
     }

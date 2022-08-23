@@ -100,7 +100,6 @@ class PostController extends Controller
 
             return redirect("/users/$user_id")->with('success', 'Post criado com sucesso!');
         } catch( Throwable $e) {
-            //return response()->json($e->getMessage());
             return redirect("/users/$user_id")->with('error', 'Falha ao criar post, tente novamente');
         }
     }

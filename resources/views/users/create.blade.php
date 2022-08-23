@@ -39,7 +39,7 @@
                                 <option value="male">Masculino</option>
                                 <option value="female">Feminino</option>
                             </select>
-                            @error('name')
+                            @error('gender')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -50,7 +50,7 @@
                                 <option value="active">Ativo</option>
                                 <option value="inactive">Inativo</option>
                             </select>
-                            @error('name')
+                            @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

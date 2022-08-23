@@ -113,7 +113,7 @@
                                         <div class="form-group">
                                             <label for="">Título</label>
                                             <input class="form-control" type="text" name="title" required>
-                                            @error('name')
+                                            @error('title')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -123,7 +123,7 @@
                                             <textarea class="form-control" name="body" id="" cols="30" rows="10" required>
 
                                             </textarea>
-                                            @error('email')
+                                            @error('body')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

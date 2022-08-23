@@ -92,7 +92,7 @@ class UserController extends Controller
             $apiUrl = env('API_URL');
 
             $apiToken = env('API_TOKEN');
-            //return response()->json($request);
+            
             $postData = [
                 'name' => $request['name'],
                 'email' => $request['email'],
