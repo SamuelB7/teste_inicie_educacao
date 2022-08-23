@@ -20,6 +20,12 @@ A partir do .env.example, crie um novo arquivo .env e adicione as suas chaves de
 npm install && npm run dev
 ```
 
+### Gerar app key:
+
+``` 
+php artisan key:generate
+```
+
 ### Em um terminal diferente, inicie do servido do PHP:
 
 ``` 
