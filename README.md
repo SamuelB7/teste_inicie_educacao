@@ -25,3 +25,6 @@ npm install && npm run dev
 ``` 
 php artisan serve
 ```
+<br>
+
+## Obrigado pela oportunidade!

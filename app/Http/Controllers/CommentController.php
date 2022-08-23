@@ -9,6 +9,17 @@ use Throwable;
 class CommentController extends Controller
 {
     public function store(Request $request) {
+        $validate = $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'body' => 'required',
+            ], 
+            [
+                'required' => 'Esse campo é obrigatório'
+            ]
+        );
+
         try {
             //return response()->json($request);
             $client = new Client();

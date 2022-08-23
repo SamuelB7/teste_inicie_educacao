@@ -39,7 +39,7 @@
                     <p>{{ $post->body }}</p>
                     <hr>
                     <div>
-                        <h5>Comentários:</h5>
+                        <h6>Comentários:</h6>
                         @if(sizeof($comments) == 0)
                             <p>Nenhum comentário adicionado ainda</p>
                         @else
@@ -59,7 +59,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
-                                                    <button type="submit" class="btn btn-sm btn-danger">Deletar comentário</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Você tem certeza?')">Deletar comentário</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -74,7 +74,7 @@
                     <form action="{{ Route('comments.store') }}" method="post">
                         @csrf
 
-                        <h5>Adicionar novo comentário</h5>
+                        <h6>Adicionar novo comentário</h6>
                         <input type="hidden" name="post_id" value="{{ $post->id }}">
                         <div class="form-group">
                             <label for="">Nome</label>
@@ -86,20 +86,20 @@
                         <div class="form-group">
                             <label for="">Email</label>
                             <input class="form-control" type="email" name="email" required>
-                            @error('name')
+                            @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Comentário</label>
-                            <textarea class="form-control" name="body" cols="30" rows="2"></textarea>
-                            @error('name')
+                            <textarea class="form-control" name="body" cols="30" rows="2"></textarea required>
+                            @error('body')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col text-right mt-3">
                             <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save"></i> Salvar
+                                <i class="fas fa-save"></i> Adicionar
                             </button>
                         </div>
                     </form>
