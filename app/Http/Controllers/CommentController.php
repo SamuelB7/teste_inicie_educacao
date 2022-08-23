@@ -45,4 +45,34 @@ class CommentController extends Controller
             return redirect("/posts/$post_id")->with('error', 'Falha ao criar comentário, tente novamente');
         }
     }
+
+    public function destroy(Request $request, $id) {
+        try {
+            //return response()->json($request);
+            $client = new Client();
+
+            $apiUrl = env('API_URL');
+
+            $apiToken = env('API_TOKEN');
+            
+            $post_id = $request['post_id'];
+
+            $post = json_decode(
+                $client->delete(
+                    "$apiUrl/comments/$id",
+                    [
+                        'headers' => [
+                            'Accept' => 'application/json',
+                            'Authorization' => "Bearer $apiToken"
+                        ]
+                    ]
+                )->getBody()->getContents(), true
+            );
+
+            return redirect("/posts/$post_id")->with('success', 'Comentário deletado com sucesso!');
+        } catch( Throwable $e) {
+            //return response()->json($e->getMessage());
+            return redirect("/posts/$post_id")->with('error', 'Falha ao deletar comentário, tente novamente');
+        }
+    }
 }

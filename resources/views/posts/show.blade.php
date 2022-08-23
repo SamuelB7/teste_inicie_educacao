@@ -39,12 +39,36 @@
                     <p>{{ $post->body }}</p>
                     <hr>
                     <div>
-                        <h5>Comentários</h5>
-                        <div class="d-flex flex-column">
-                            @foreach($comments as $comment)
-                                <strong>{{$comment->name}}: </strong> {{$comment->body}}
-                            @endforeach
-                        </div>
+                        <h5>Comentários:</h5>
+                        @if(sizeof($comments) == 0)
+                            <p>Nenhum comentário adicionado ainda</p>
+                        @else
+                            <table class='table table-striped'>
+                                <thead classe='h5'>
+                                    <th>Nome</th>
+                                    <th>Conteúdo</th>
+                                    <th>Ações</th>
+                                </thead>
+                                <tbody id="users">
+                                    @foreach($comments as $comment)
+                                        <tr>
+                                            <td>{{ $comment->name }}</td>
+                                            <td>{{ $comment->body }}</td>
+                                            <td>
+                                                <form action="{{ Route('comments.destroy', $comment->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                                    <button type="submit" class="btn btn-sm btn-danger">Deletar comentário</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        @endif
+                        
                     </div>
                     <hr>
                     <form action="{{ Route('comments.store') }}" method="post">
