@@ -19,18 +19,34 @@
 
         <div class="row">
             <div class="col-12 mt-4">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{$message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{$message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
                 <x-adminlte-card title="{{ $userDetails->name }}" theme="dark" icon="fas fa-fw  fa-user">
                     <div class="card-header">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#details">Detalhes do usuário</a>
+                                <a class="nav-link active" data-toggle="tab" href="#details">Detalhes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#posts">Posts</a>
+                                <a class="nav-link" data-toggle="tab" href="#posts">Posts de {{ $userDetails->name }}</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#comments">Comentários</a>
-                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#newpost">Criar novo post</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -77,7 +93,7 @@
                                                 <td>{{ $posts->id }}</td>
                                                 <td>{{ $posts->title }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-sm">
+                                                    <a href="{{ Route('posts.show', $posts->id) }}" class="btn btn-primary btn-sm">
                                                         Detalhes
                                                     </a>
                                                 </td>
@@ -87,8 +103,39 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="tab-pane" id="comments">
-                                <h1>moredetails</h1>
+                            <div class="tab-pane" id="newpost">
+                                <x-adminlte-card title="Novo post" theme="dark" icon="fas fa-fw fa-book">
+                                    <form action="{{ Route('posts.store') }}" method="post">
+                                        @csrf
+
+                                        <input type="hidden" name="user_id" value="{{ $userDetails->id }}">
+
+                                        <div class="form-group">
+                                            <label for="">Título</label>
+                                            <input class="form-control" type="text" name="title" required>
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="">Conteúdo</label>
+                                            <textarea class="form-control" name="body" id="" cols="30" rows="10" required>
+
+                                            </textarea>
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        
+                                        <div class="col text-right mt-3">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fas fa-save"></i> Salvar
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                </x-adminlte-card>
                             </div>
                         </div>
                     </div>

@@ -315,6 +315,17 @@ return [
                 ]
             ]
         ],
+        [
+            'text' => 'Posts',
+            'url'  => '/posts',
+            'icon' => 'fas fa-fw fa-book',
+            'submenu' => [
+                [
+                    'text' => 'Lista',
+                    'url'  => 'posts',
+                ]
+            ]
+        ],
         /* [
             'text' => 'change_password',
             'url'  => 'admin/settings',

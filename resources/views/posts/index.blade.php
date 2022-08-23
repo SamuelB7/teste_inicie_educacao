@@ -3,7 +3,7 @@
 @section('title', 'Users')
 
 @section('content_header')
-    <h1>Usuários</h1>
+    <h1>Posts</h1>
 @stop
 
 @section('content')
@@ -13,10 +13,7 @@
                 
             </div>
             <div class="col text-right">
-                <a href="{{ Route('users.create') }}" class='btn btn-primary'>
-                    <i class='fas fa-plus'></i>
-                    Adicionar
-                </a>
+                
             </div>
         </div>
 
@@ -38,26 +35,23 @@
                         </button>
                     </div>
                 @endif
-                <x-adminlte-card title="Tabela de usuários" theme="dark" icon="fas fa-fw fa-users">
+                <x-adminlte-card title="Tabela de pública de posts" theme="dark" icon="fas fa-fw fa-books">
 
                     <table class='table table-striped'>
                         <thead classe='h5'>
                             <th>ID</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Gênero</th>
-                            <th>Status</th>
+                            <th>Título</th>
+                            <th>Conteúdo</th>
+                            <th>Ações</th>
                         </thead>
-                        <tbody>
-                            @foreach ($users as $user)
+                        <tbody id="users">
+                            @foreach ($posts as $post)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->gender }}</td>
-                                    <td>{{ $user->status }}</td>
+                                    <td>{{ $post->id }}</td>
+                                    <td>{{ $post->title }}</td>
+                                    <td>{{ $post->body }}</td>
                                     <td>
-                                        <a href="{{ Route('users.show', $user->id) }}" class="btn btn-primary btn-sm">
+                                        <a href="{{ Route('posts.show', $post->id) }}" class="btn btn-primary btn-sm">
                                             Detalhes
                                         </a>
                                     </td>
